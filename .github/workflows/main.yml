@@ -6,8 +6,7 @@ on:
       - main  # 触发分支
 
 jobs:
-  build-and-push:
-    runs-on: ubuntu-latest
+
 
 
 
