@@ -1,0 +1,37 @@
+name: Build and Push to GHCR
+
+on:
+  push:
+    branches:
+      - main  # 触发分支
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+
+
+
+
+    # 1. 构建 Docker 镜像
+    - name: Build Docker image
+      run: |
+        docker build -t lwo:hy-2 .
+
+    # 2. 登录 Docker Hub
+    - name: Log in to Docker Hub
+      run: |
+        echo "${{ secrets.DOCKER_PASSWORD }}" | docker login docker.io -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+
+    # 3. 推送 Docker 镜像
+    - name: Push Docker image
+      run: |
+        docker tag lwo:hy-2 pasceger/lwo:hy-2
+
+        docker push pasceger/lwo:hy-2
+
+
+
+        
+
