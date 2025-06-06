@@ -11,18 +11,18 @@ jobs:
 
     steps:
 
-    # 5. 构建 Docker 镜像
+  
     - name: Build Docker image
       run: |
         docker build -t hy2sh:latest .
 
-    # 6. 登录 Docker Hub
+ 
     - name: Log in to Docker Hub
       run: |
         echo "${{ secrets.DOCKER_PASSWORD }}" | docker login docker.io -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
 
-    # 7. 推送 Docker 镜像
+ 
     - name: Push Docker image
       run: |
         docker tag hy2sh:latest pasceger/hy2sh:latest
